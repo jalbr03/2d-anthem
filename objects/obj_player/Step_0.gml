@@ -1,53 +1,74 @@
+//controls
 if(!is_controlled_by_internet) {
+	up = keyboard_check(ord("W"));
+	down = keyboard_check(ord("S"));
 	left = keyboard_check(ord("A"));
 	right = keyboard_check(ord("D"));
-	jump = keyboard_check(vk_space);
+	jump = keyboard_check_pressed(vk_space);
 	sprint = keyboard_check_pressed(vk_shift);
 }
+grounded = place_meeting(x,y,obj_static);
+moveh = right-left;
+movev = up-down;
 
-var move = right-left;
-
-switch(movement_state) {
+//movement switching
+switch(movement_state){
 	case movement_states.walking:
-		phy_linear_velocity_x = lerp(phy_linear_velocity_x, top_walking_spd*move, acc_spd);
-		break;
-	case movement_states.running:
-		phy_linear_velocity_x = lerp(phy_linear_velocity_x, top_running_spd*move, acc_spd);
-		break;
-}
-
-if(sprint) {
-	switch(movement_state){
-		case movement_states.walking:
+		if(sprint) {
 			movement_state = movement_states.running;
-			break;
-		case movement_states.running:
+		} else if(jump) {
+			movement_state = movement_states.jumping;
+		}
+		
+		break;
+		
+	case movement_states.running:
+		if(sprint || moveh != last_moveh) {
 			movement_state = movement_states.walking;
-			break;
-	}
+		} else if(jump) {
+			movement_state = movement_states.jumping;
+		}
+		
+		break;
+		
+	case movement_states.jumping:
+		if(grounded) {
+			movement_state = movement_states.walking;
+		}
+		if(sprint) {
+			movement_state = movement_states.flying;
+		}
+		if(phy_linear_velocity_y > 0){
+			movement_state = movement_states.falling;
+		}
+		
+		break;
+		
+	case movement_states.flying:
+		if(jump) {
+			movement_state = movement_states.falling;
+		} else if(grounded) {
+			movement_state = movement_states.walking;
+		}
+		
+		break;
+		
+	case movement_states.falling:
+		if(jump) {
+			movement_state = movement_states.flying;
+		} else if(grounded) {
+			movement_state = movement_states.walking;
+		}
+		
+		break;
 }
 
-if(place_meeting(x,y,obj_static)) {
-	jump_buffer = max_jump_buffer
-} else if(jump_buffer > 0) {
-	jump_buffer --;
-}
+//handling movement
+script_execute(movement_scripts[movement_state]);
 
-if(jump) {
-	land_buffer = max_land_buffer;
-} else {
-	is_jumping = false;
-	land_buffer --;
-}
 
-if(land_buffer > 0 && jump_buffer > 0) {
-	is_jumping = true;
-	jump_time = max_jump_time;
-	jump_buffer = 0;
-	land_buffer = 0;
-}
-show_debug_message(jump_time)
-if(is_jumping && jump_time > 0){
-	phy_linear_velocity_y = -jump_height+jump_time;
-	jump_time --;
-}
+//jumping
+
+
+//last of all--------------------------------------------
+last_moveh = moveh;

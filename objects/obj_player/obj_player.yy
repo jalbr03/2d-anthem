@@ -7,7 +7,10 @@
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_dynamic",
+    "path": "objects/obj_dynamic/obj_dynamic.yy",
+  },
   "physicsObject": true,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -16,7 +19,7 @@
   "physicsRestitution": 0.0,
   "physicsLinearDamping": 0.1,
   "physicsAngularDamping": 0.1,
-  "physicsFriction": 0.2,
+  "physicsFriction": 0.0,
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [
