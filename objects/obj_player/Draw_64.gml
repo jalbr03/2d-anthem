@@ -1,0 +1,1 @@
+scr_draw_heat_bar(room_width/2, room_height-32, suit_heat);
