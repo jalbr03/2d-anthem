@@ -46,15 +46,17 @@ switch(movement_state){
 		
 	case movement_states.flying:
 		if(jump) {
+			grv = normal_grv;
 			movement_state = movement_states.falling;
 		} else if(grounded) {
+			grv = normal_grv;
 			movement_state = movement_states.walking;
 		}
 		
 		break;
 		
 	case movement_states.falling:
-		if(jump) {
+		if(sprint) {
 			movement_state = movement_states.flying;
 		} else if(grounded) {
 			movement_state = movement_states.walking;
