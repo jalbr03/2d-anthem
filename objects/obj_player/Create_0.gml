@@ -1,4 +1,4 @@
-enum movement_states{
+enum action_states{
 	walking,
 	running,
 	jumping,
@@ -7,7 +7,7 @@ enum movement_states{
 	falling
 }
 
-movement_scripts = [
+action_scripts = [
 	scr_walking,
 	scr_running,
 	scr_jumping,
@@ -24,7 +24,7 @@ top_slow_fly = 50;
 top_inair_spd = 50;
 flying_spd = 100;
 
-flying_vertical_spd = 100;
+flying_vertical_spd = 200;
 rotation_speed = 0.1;
 
 suit_heat = 0;
@@ -36,9 +36,11 @@ last_direction = 1;
 acc_spd = 0.3;
 top_walking_spd = 200;
 top_running_spd = 500;
-movement_state = movement_states.walking;
+action_state = action_states.walking;
 last_moveh = 0;
 
+max_jumps = 1;
+current_jumps = max_jumps;
 jump_height = 500;
 jump_buffer = 0;
 max_jump_buffer = room_speed;

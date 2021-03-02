@@ -14,18 +14,16 @@ function scr_running() {
 
 function scr_jumping() {
 	if(grv != normal_grv) grv = normal_grv;
-	phy_linear_velocity_x = lerp(phy_linear_velocity_x, phy_linear_velocity_x+top_inair_spd*moveh, acc_spd/10);
-		
-	if(grounded) {
-		jump_buffer = max_jump_buffer
-	} else if(jump_buffer > 0) {
-		jump_buffer --;
-	}
-	if(jump > 0 && jump_buffer > 0) {
+	
+	if(jump && (jump_buffer > 0 || current_jumps > 0)) {
 		phy_linear_velocity_y = -jump_height;
-		jump_buffer = 0;
-		land_buffer = 0;
+		if(!grounded) phy_linear_velocity_x = abs(phy_linear_velocity_x)*moveh;
+		current_jumps --;
+	}else{
+		phy_linear_velocity_x = lerp(phy_linear_velocity_x, phy_linear_velocity_x+top_inair_spd*moveh, acc_spd/10);
 	}
+	jump_buffer = 0;
+	land_buffer = 0;
 }
 
 function scr_hovering() {
@@ -41,7 +39,7 @@ function scr_flying() {
 	phy_linear_velocity_y = lerp(phy_linear_velocity_y, flying_vertical_spd*movev, acc_spd);
 	phy_linear_velocity_x = lerp(phy_linear_velocity_x, flying_spd*last_direction, acc_spd/2);
 
-	var target_angle = -point_direction(x,y,x+phy_linear_velocity_x/2,y+phy_linear_velocity_y*2);
+	var target_angle = -point_direction(x,y,x+phy_linear_velocity_x/2,y+phy_linear_velocity_y);
 	var angle_diff = angle_difference(phy_rotation, target_angle);
 	phy_rotation -= angle_diff * rotation_speed;
 
