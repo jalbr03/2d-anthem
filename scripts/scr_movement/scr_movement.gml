@@ -39,9 +39,11 @@ function scr_flying() {
 	phy_linear_velocity_y = lerp(phy_linear_velocity_y, flying_vertical_spd*movev, acc_spd);
 	phy_linear_velocity_x = lerp(phy_linear_velocity_x, flying_spd*last_direction, acc_spd/2);
 
-	var target_angle = -point_direction(x,y,x+phy_linear_velocity_x/2,y+phy_linear_velocity_y);
+	var target_angle = -point_direction(x,y,x+phy_linear_velocity_x/2,y+phy_linear_velocity_y)+90;
 	var angle_diff = angle_difference(phy_rotation, target_angle);
 	phy_rotation -= angle_diff * rotation_speed;
+
+	image_xscale = sign(y-(y+lengthdir_y(10,phy_rotation)));
 
 	if(moveh == sign(phy_linear_velocity_x)) {
 		flying_spd = top_fast_fly;

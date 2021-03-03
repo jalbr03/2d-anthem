@@ -1,21 +1,21 @@
 {
-  "bboxMode": 2,
+  "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
-  "origin": 4,
+  "origin": 9,
   "preMultiplyAlpha": false,
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 12,
-  "bbox_right": 63,
-  "bbox_top": 20,
-  "bbox_bottom": 43,
+  "bbox_left": 0,
+  "bbox_right": 102,
+  "bbox_top": 0,
+  "bbox_bottom": 222,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 64,
-  "height": 64,
+  "width": 103,
+  "height": 223,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"b7e8e756-3f4c-45ae-94b0-30f4ef03c8e7","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"b7e8e756-3f4c-45ae-94b0-30f4ef03c8e7","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"LayerId":{"name":"37bc2301-ed9a-4921-a25b-5dc44a17666d","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_test_suit_flying","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"resourceVersion":"1.0","name":"b7e8e756-3f4c-45ae-94b0-30f4ef03c8e7","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"08725b9b-d659-4cee-9ff3-74eeb3608c7e","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"08725b9b-d659-4cee-9ff3-74eeb3608c7e","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"LayerId":{"name":"7cf3b68e-7ee2-4a6d-be86-f67a7dfb429f","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_test_suit_flying","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"resourceVersion":"1.0","name":"08725b9b-d659-4cee-9ff3-74eeb3608c7e","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_test_suit_flying","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"6d6bbca0-8701-43dd-a55b-8b674ca3a043","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b7e8e756-3f4c-45ae-94b0-30f4ef03c8e7","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"aa560179-1e2e-4de2-a454-3031cbda9917","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"08725b9b-d659-4cee-9ff3-74eeb3608c7e","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -54,8 +54,8 @@
     "backdropHeight": 768,
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
-    "xorigin": 32,
-    "yorigin": 32,
+    "xorigin": 62,
+    "yorigin": 102,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_test_suit_flying","path":"sprites/spr_test_suit_flying/spr_test_suit_flying.yy",},
@@ -65,7 +65,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"37bc2301-ed9a-4921-a25b-5dc44a17666d","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"7cf3b68e-7ee2-4a6d-be86-f67a7dfb429f","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
     "name": "Sprites",
