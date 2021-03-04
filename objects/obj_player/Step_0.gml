@@ -10,8 +10,9 @@ if(!is_controlled_by_internet) {
 }
 moveh = right - left;
 movev = down - up;
-grounded = collision_line(x-sprite_width/2,y+sprite_height/2+10,x+sprite_width/2,y+sprite_height/2+10,obj_static,0,1)// place_meeting(x,y,obj_static);
-on_wall = collision_line(x+sprite_width/2*last_direction+10*last_direction,y+sprite_height/3,x+sprite_width/2*last_direction+10*last_direction,y-sprite_height/3,obj_static,0,1)
+
+grounded = place_meeting(x,y,obj_ground_check);
+on_wall = place_meeting(x,y,obj_wall_check);
 
 //action switching
 switch(action_state){
@@ -19,7 +20,7 @@ switch(action_state){
 		if(sprint && moveh != 0) {
 			action_state = action_states.running;
 		
-		} else if(jump) {
+		} else if(land_buffer > 0) {
 			action_state = action_states.jumping;
 		}
 		
@@ -29,7 +30,7 @@ switch(action_state){
 		if(sprint || moveh != last_moveh) {
 			action_state = action_states.walking;
 		
-		} else if(jump) {
+		} else if(land_buffer > 0) {
 			action_state = action_states.jumping;
 		}
 		
@@ -55,10 +56,11 @@ switch(action_state){
 		
 	case action_states.flying:
 		sprite_index = sprite_indexes[1];
-		if(jump) {
+		if(land_buffer > 0) {
 			sprite_index = sprite_indexes[0];
 			phy_rotation = 0;
 			action_state = action_states.falling;
+			current_jumps = 0;
 		
 		} else if(hover) {
 			sprite_index = sprite_indexes[0];
@@ -84,8 +86,9 @@ switch(action_state){
 		break;
 		
 	case action_states.hovering:
-		if(jump) {
+		if(land_buffer > 0) {
 			action_state = action_states.falling;
+			current_jumps = 0;
 		
 		} else if(sprint){
 			phy_rotation = last_direction ? 170 : 0;
@@ -106,7 +109,7 @@ switch(action_state){
 		} else if(grounded) {
 			action_state = action_states.walking;
 			
-		} else if(current_jumps > 0 && jump){
+		} else if(current_jumps > 0 && land_buffer > 0){
 			action_state = action_states.jumping;
 		}
 		
@@ -115,15 +118,21 @@ switch(action_state){
 
 //handling action
 script_execute(action_scripts[action_state]);
-
-if(grounded) {
+if(grounded && phy_linear_velocity_y > 0) {
 	current_jumps = max_jumps;
-	jump_buffer = max_jump_buffer
+	jump_buffer = max_jump_buffer;
 } else if(jump_buffer > 0) {
 	jump_buffer --;
 }
+
+if(jump){
+	land_buffer = max_land_buffer;
+}else if(land_buffer > 0){
+	land_buffer --;
+}
+
 //last of all--------------------------------------------
 last_moveh = moveh;
-if(moveh != 0){
+if(moveh != 0 && action_state != action_states.flying){
 	last_direction = moveh;
 }
